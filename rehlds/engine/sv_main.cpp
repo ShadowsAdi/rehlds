@@ -2211,26 +2211,27 @@ int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, in
 
 	switch (Q_atoi(s))
 	{
-	case TYPE_CLIENT:
-		return 1;
+		case TYPE_CLIENT:
+			return 1;
 
-	case TYPE_PROXY:
-		SV_CountProxies(&proxies);
-		if (proxies >= sv_proxies.value && !bIsReconnecting)
-		{
-			SV_RejectConnection(adr, "Proxy slots are full.\n");
+		case TYPE_PROXY:
+			SV_CountProxies(&proxies);
+			if (proxies >= sv_proxies.value && !bIsReconnecting)
+			{
+				SV_RejectConnection(adr, "Proxy slots are full.\n");
+				return 0;
+			}
+			return 1;
+
+		case TYPE_COMMENTATOR:
+			SV_RejectConnection(adr, "Please connect to HLTV master proxy.\n");
 			return 0;
-		}
-		return 1;
 
-	case TYPE_COMMENTATOR:
-		SV_RejectConnection(adr, "Please connect to HLTV master proxy.\n");
-		return 0;
-
-	default:
-		SV_RejectConnection(adr, "Unknown HLTV client type.\n");
-		return 0;
+		default:
+			SV_RejectConnection(adr, "Unknown HLTV client type.\n");
+			return 0;
 	}
+	return 1;
 }
 
 int SV_FindEmptySlot(netadr_t *adr, int *pslot, client_t ** ppClient)
