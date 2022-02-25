@@ -2114,12 +2114,12 @@ void SV_ReplaceSpecialCharactersInName(char *newname, const char *oldname)
 }
 #endif
 
-int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
+int SV_CheckUserInfo(netadr_t adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
 	return g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
 }
 
-int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
+int EXT_FUNC SV_CheckUserInfo_internal(netadr_t adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
 	const char *s;
 	char newname[MAX_NAME];
