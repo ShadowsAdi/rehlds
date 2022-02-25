@@ -2235,7 +2235,7 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 		default:
 			SV_RejectConnection(adr, "Unknown HLTV client type.\n");
 			return 0;
-	}
+	} 
 	return 1;
 }
 
