@@ -2363,7 +2363,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		}
 	}
 
-	if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
+	if (!SV_CheckUserInfo(adr, userinfo, reconnect, nClientSlot, name))
 		return;
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
