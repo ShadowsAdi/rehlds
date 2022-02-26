@@ -2365,7 +2365,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		}
 	}
 
-	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name)
+	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 	/*if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
 		return;*/
 	
