@@ -2116,18 +2116,18 @@ void SV_ReplaceSpecialCharactersInName(char *newname, const char *oldname)
 
 int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
-	Log_Printf("here 1");
-	g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
+	Con_Printf("here 1");
+	return g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
 }
 
 int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
-	Log_Printf("here 2");
+	Con_Printf("here 2");
 	const char *s;
 	char newname[MAX_NAME];
 	int proxies;
 
-	if (!NET_IsLocalAddress(*adr))
+	if (!NET_IsLocalAddress(adr))
 	{
 		const char* password = Info_ValueForKey(userinfo, "password");
 
@@ -2136,13 +2136,13 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 #ifdef REHLDS_FIXES
 			if (password[0] == '\0')
 			{
-				Con_Printf("%s:  connect without password\n", NET_AdrToString(*adr));
+				Con_Printf("%s:  connect without password\n", NET_AdrToString(adr));
 				SV_RejectConnection(adr, "No password set. Clean your userinfo.\n");
 			}
 			else
 #endif // REHLDS_FIXES
 			{
-				Con_Printf("%s:  password failed\n", NET_AdrToString(*adr));
+				Con_Printf("%s:  password failed\n", NET_AdrToString(adr));
 				SV_RejectConnectionForPassword(adr);
 			}
 
@@ -2238,7 +2238,6 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 			SV_RejectConnection(adr, "Unknown HLTV client type.\n");
 			return 0;
 	} 
-	return 1;
 }
 
 int SV_FindEmptySlot(netadr_t *adr, int *pslot, client_t ** ppClient)
@@ -2369,7 +2368,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	/*if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
 		return;*/
 
-	Log_Printf("here 3: %d", iNum);
+	Con_Printf("here 3: %d", iNum);
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
 		return;
