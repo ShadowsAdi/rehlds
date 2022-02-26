@@ -2122,7 +2122,7 @@ int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, in
 
 int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
-	Con_Printf("here 2\n");
+	Con_Printf("here 2 || %s\n", NET_AdrToString(*adr));
 	const char *s;
 	char newname[MAX_NAME];
 	int proxies;
