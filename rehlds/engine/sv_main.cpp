@@ -2369,7 +2369,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		return;*/
 
 	Con_Printf("here 3: %d", iNum);
-	return;
+	return; 
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
 		return;
