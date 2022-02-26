@@ -2301,7 +2301,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		return;
 	}
 	
-	int number = SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1)))
+	int number = SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1)));
 	
 	Con_Printf("Got: %d \n", number);
 
