@@ -2300,12 +2300,8 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		SV_RejectConnection(&adr, "Insufficient connection info\n");
 		return;
 	}
-	
-	int number = SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1)));
-	
-	Con_Printf("Got: %d \n", number);
 
-	if (!number)
+	if (!SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1))))
 		return;
 
 	if (!SV_CheckChallenge(&adr, Q_atoi(Cmd_Argv(2))))
@@ -2369,11 +2365,10 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	}
 
 	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
-	/*if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
-		return;*/
 
 	Con_Printf("here 3: %d\n", iNum);
-	return; 
+	if (!iNum)
+		return;
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
 		return;
