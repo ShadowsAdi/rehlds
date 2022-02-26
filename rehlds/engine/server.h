@@ -497,7 +497,7 @@ int SV_CheckKeyInfo(netadr_t *adr, char *protinfo, unsigned short *port, int *pA
 int SV_CheckKeyInfo_internal(netadr_t *adr, char *protinfo, unsigned short *port, int *pAuthProtocol, char *pszRaw, char *cdkey);
 int SV_CheckForDuplicateSteamID(client_t *client);
 qboolean SV_CheckForDuplicateNames(char *userinfo, qboolean bIsReconnecting, int nExcludeSlot);
-int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name);
+int SV_CheckUserInfo(netadr_t adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name);
 int SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name);
 int SV_FindEmptySlot(netadr_t *adr, int *pslot, client_t ** ppClient);
 void SV_ConnectClient(void);

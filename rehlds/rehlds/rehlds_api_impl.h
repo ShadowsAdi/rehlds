@@ -63,8 +63,8 @@ typedef IHookChainImpl<int, netadr_t*, char*, uint16*, int*, char*, char*> CRehl
 typedef IHookChainRegistryImpl<int, netadr_t*, char*, uint16*, int*, char*, char*> CRehldsHookRegistry_SV_CheckKeyInfo;
 
 //SV_CheckUserInfo hook
-typedef IHookChainImpl<int, netadr_t*, char*, qboolean, int, char*> CRehldsHook_SV_CheckUserInfo;
-typedef IHookChainRegistryImpl<int, netadr_t*, char*, qboolean, int, char*> CRehldsHookRegistry_SV_CheckUserInfo;
+typedef IHookChainImpl<int, netadr_t, char*, qboolean, int, char*> CRehldsHook_SV_CheckUserInfo;
+typedef IHookChainRegistryImpl<int, netadr_t, char*, qboolean, int, char*> CRehldsHookRegistry_SV_CheckUserInfo;
 
 //SV_CheckIPRestrictions hook
 typedef IHookChainImpl<int, netadr_t*, int> CRehldsHook_SV_CheckIPRestrictions;
@@ -285,6 +285,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckProtocol* SV_CheckProtocol();
 	EXT_FUNC virtual IRehldsHookRegistry_SVC_GetChallenge_mod* SVC_GetChallenge_mod();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckKeyInfo* SV_CheckKeyInfo();
+	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckIPRestrictions* SV_CheckIPRestrictions();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_FinishCertificateCheck* SV_FinishCertificateCheck();
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyBotConnect* Steam_NotifyBotConnect();
@@ -325,7 +326,6 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Alloc* ED_Alloc();
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Free* ED_Free();
 	EXT_FUNC virtual IRehldsHookRegistry_Con_Printf* Con_Printf();
-	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;
