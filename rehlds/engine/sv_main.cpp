@@ -2116,13 +2116,13 @@ void SV_ReplaceSpecialCharactersInName(char *newname, const char *oldname)
 
 int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
-	Con_Printf("here 1");
+	Con_Printf("here 1\n");
 	return g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
 }
 
 int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
-	Con_Printf("here 2");
+	Con_Printf("here 2\n");
 	const char *s;
 	char newname[MAX_NAME];
 	int proxies;
@@ -2300,8 +2300,12 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		SV_RejectConnection(&adr, "Insufficient connection info\n");
 		return;
 	}
+	
+	int number = SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1)))
+	
+	Con_Printf("Got: %d \n", number);
 
-	if (!SV_CheckProtocol(&adr, Q_atoi(Cmd_Argv(1))))
+	if (!number)
 		return;
 
 	if (!SV_CheckChallenge(&adr, Q_atoi(Cmd_Argv(2))))
@@ -2368,7 +2372,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	/*if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
 		return;*/
 
-	Con_Printf("here 3: %d", iNum);
+	Con_Printf("here 3: %d\n", iNum);
 	return; 
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
