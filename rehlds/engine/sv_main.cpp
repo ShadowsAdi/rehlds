@@ -2319,10 +2319,12 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 
 	Q_strncpy(protinfo, s, sizeof(protinfo) - 1);
 	protinfo[sizeof(protinfo) - 1] = 0;
-	if (!SV_CheckKeyInfo(&adr, protinfo, &port, &nAuthProtocol, szRawCertificate, cdkey))
+	
+	int number = SV_CheckKeyInfo(&adr, protinfo, &port, &nAuthProtocol, szRawCertificate, cdkey);
+	if (!number)
 		return;
 	
-	Con_Printf("Key 3: %s\n", NET_AdrToString(adr));
+	Con_Printf("Key 3: %d |  %s\n",number, NET_AdrToString(adr));
 
 	if (!SV_CheckIPRestrictions(&adr, nAuthProtocol))
 	{
