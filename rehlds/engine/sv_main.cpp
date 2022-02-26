@@ -1967,13 +1967,13 @@ int EXT_FUNC SV_FinishCertificateCheck_internal(netadr_t *adr, int nAuthProtocol
 
 int SV_CheckKeyInfo(netadr_t *adr, char *protinfo, unsigned short *port, int *pAuthProtocol, char *pszRaw, char *cdkey)
 {
-	Con_Printf("Key 1: %s", NET_AdrToString(*adr);
+	Con_Printf("Key 1: %s", NET_AdrToString(*adr));
 	return g_RehldsHookchains.m_SV_CheckKeyInfo.callChain(SV_CheckKeyInfo_internal, adr, protinfo, port, pAuthProtocol, pszRaw, cdkey);
 }
 
 int EXT_FUNC SV_CheckKeyInfo_internal(netadr_t *adr, char *protinfo, unsigned short *port, int *pAuthProtocol, char *pszRaw, char *cdkey)
 {
-	Con_Printf("Key 2: %s", NET_AdrToString(*adr);
+	Con_Printf("Key 2: %s", NET_AdrToString(*adr));
 	const char *s = Info_ValueForKey(protinfo, "prot");
 	int nAuthProtocol = Q_atoi(s);
 
@@ -2322,7 +2322,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	if (!SV_CheckKeyInfo(&adr, protinfo, &port, &nAuthProtocol, szRawCertificate, cdkey))
 		return;
 	
-	Con_Printf("Key 3: %s", NET_AdrToString(adr);
+	Con_Printf("Key 3: %s", NET_AdrToString(adr));
 
 	if (!SV_CheckIPRestrictions(&adr, nAuthProtocol))
 	{
