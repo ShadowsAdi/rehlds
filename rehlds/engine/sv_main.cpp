@@ -2117,7 +2117,7 @@ void SV_ReplaceSpecialCharactersInName(char *newname, const char *oldname)
 int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
 {
 	Log_Printf("here 1");
-	return g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
+	g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
 }
 
 int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
@@ -2368,7 +2368,6 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 	/*if (!SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name))
 		return;*/
-	
 
 	Log_Printf("here 3: %d", iNum);
 
