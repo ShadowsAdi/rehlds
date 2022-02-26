@@ -2127,7 +2127,7 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 	char newname[MAX_NAME];
 	int proxies;
 
-	if (!NET_IsLocalAddress(adr))
+	if (!NET_IsLocalAddress(&adr))
 	{
 		const char* password = Info_ValueForKey(userinfo, "password");
 
@@ -2136,13 +2136,13 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 #ifdef REHLDS_FIXES
 			if (password[0] == '\0')
 			{
-				Con_Printf("%s:  connect without password\n", NET_AdrToString(adr));
+				Con_Printf("%s:  connect without password\n", NET_AdrToString(&adr));
 				SV_RejectConnection(adr, "No password set. Clean your userinfo.\n");
 			}
 			else
 #endif // REHLDS_FIXES
 			{
-				Con_Printf("%s:  password failed\n", NET_AdrToString(adr));
+				Con_Printf("%s:  password failed\n", NET_AdrToString(&adr));
 				SV_RejectConnectionForPassword(adr);
 			}
 
