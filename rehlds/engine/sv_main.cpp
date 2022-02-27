@@ -2235,11 +2235,10 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 		case TYPE_COMMENTATOR:
 			SV_RejectConnection(adr, "Please connect to HLTV master proxy.\n");
 			return 0;
-
-		default:
-			SV_RejectConnection(adr, "Unknown HLTV client type.\n");
-			return 0;
 	}
+	
+	SV_RejectConnection(adr, "Unknown HLTV client type.\n");
+	return 0;
 }
 
 int SV_FindEmptySlot(netadr_t *adr, int *pslot, client_t ** ppClient)
