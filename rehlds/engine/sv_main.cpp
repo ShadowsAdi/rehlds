@@ -2213,6 +2213,8 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 		Q_strncpy(name, Info_ValueForKey(userinfo, "name"), MAX_NAME - 1);
 		name[MAX_NAME - 1] = '\0';
 	}
+	
+	Con_Printf("here 4 || %s\n", NET_AdrToString(*adr));
 
 	s = Info_ValueForKey(userinfo, "*hltv");
 	if (!s[0])
@@ -2236,6 +2238,8 @@ int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean b
 			SV_RejectConnection(adr, "Please connect to HLTV master proxy.\n");
 			return 0;
 	}
+	
+	Con_Printf("here 5 || %s\n", NET_AdrToString(*adr));
 	
 	SV_RejectConnection(adr, "Unknown HLTV client type.\n");
 	return 0;
@@ -2372,7 +2376,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 
 	Con_Printf("here 3: %d  | user: %s | rec: %d | slot:%d | name:%s\n", iNum, userinfo, reconnect, nClientSlot, name);
-	if (!iNum)
+	if (iNum)
 		return;
 
 	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
