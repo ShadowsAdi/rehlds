@@ -2379,7 +2379,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 
 	Con_Printf("here 3: %d  | user: %s | rec: %d | slot:%d | name:%s\n", iNum, userinfo, reconnect, nClientSlot, name);
-	if (!iNum)
+	if (iNum)
 		return;
 
 	if (reconnect)
@@ -2404,6 +2404,9 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		if (!SV_FindEmptySlot(&adr, &nClientSlot, &client))
 			return;
 	}
+	
+	Con_Printf("heress");
+	return;
 
 	if (!SV_CheckIPConnectionReuse(&adr))
 		return;
