@@ -2373,16 +2373,13 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 		}
 	}
 
-	netadr_t tem;
-	Q_memcpy(&tem, &adr, sizeof(tem));
+	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
+		return;
 
-	int iNum = SV_CheckUserInfo(&tem, userinfo, reconnect, nClientSlot, name);
+	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 
 	Con_Printf("here 3: %d  | user: %s | rec: %d | slot:%d | name:%s\n", iNum, userinfo, reconnect, nClientSlot, name);
 	if (!iNum)
-		return;
-
-	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
 		return;
 
 	if (reconnect)
