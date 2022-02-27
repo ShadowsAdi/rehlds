@@ -1967,13 +1967,11 @@ int EXT_FUNC SV_FinishCertificateCheck_internal(netadr_t *adr, int nAuthProtocol
 
 int SV_CheckKeyInfo(netadr_t *adr, char *protinfo, unsigned short *port, int *pAuthProtocol, char *pszRaw, char *cdkey)
 {
-	Con_Printf("Key 1: %s\n", NET_AdrToString(*adr));
 	return g_RehldsHookchains.m_SV_CheckKeyInfo.callChain(SV_CheckKeyInfo_internal, adr, protinfo, port, pAuthProtocol, pszRaw, cdkey);
 }
 
 int EXT_FUNC SV_CheckKeyInfo_internal(netadr_t *adr, char *protinfo, unsigned short *port, int *pAuthProtocol, char *pszRaw, char *cdkey)
 {
-	Con_Printf("Key 2: %s\n", NET_AdrToString(*adr));
 	const char *s = Info_ValueForKey(protinfo, "prot");
 	int nAuthProtocol = Q_atoi(s);
 
@@ -2116,13 +2114,13 @@ void SV_ReplaceSpecialCharactersInName(char *newname, const char *oldname)
 }
 #endif
 
-int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
+int SV_CheckUserInfo(netadr_t *adr, char *userinfo, qboolean *bIsReconnecting, int *nReconnectSlot, char *name)
 {
 	Con_Printf("here 1: %s\n", NET_AdrToString(*adr));
 	return g_RehldsHookchains.m_SV_CheckUserInfo.callChain(SV_CheckUserInfo_internal, adr, userinfo, bIsReconnecting, nReconnectSlot, name);
 }
 
-int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean bIsReconnecting, int nReconnectSlot, char *name)
+int EXT_FUNC SV_CheckUserInfo_internal(netadr_t *adr, char *userinfo, qboolean *bIsReconnecting, int *nReconnectSlot, char *name)
 {
 	Con_Printf("here 2 || %s\n", NET_AdrToString(*adr));
 	const char *s;
@@ -2327,8 +2325,6 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	if (!number)
 		return;
 	
-	Con_Printf("Key 3: %d |  %s\n", number, NET_AdrToString(adr));
-
 	if (!SV_CheckIPRestrictions(&adr, nAuthProtocol))
 	{
 		SV_RejectConnection(&adr, "LAN servers are restricted to local clients (class C).\n");
@@ -2372,12 +2368,8 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 #endif // REHLDS_FIXES
 		}
 	}
-	
-	Con_Printf("here before %d\n", &adr);
 
-	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
-
-	Con_Printf("here after %d\n", &adr);
+	int iNum = SV_CheckUserInfo(&adr, userinfo, &reconnect, &nClientSlot, name);
 	
 	if (!iNum)
 		return;
