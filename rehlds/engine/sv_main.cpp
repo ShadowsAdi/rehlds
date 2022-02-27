@@ -2372,15 +2372,17 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 #endif // REHLDS_FIXES
 		}
 	}
-
-	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
-		return;
+	
+	Con_Printf("here before %d\n", &adr);
 
 	int iNum = SV_CheckUserInfo(&adr, userinfo, reconnect, nClientSlot, name);
 
-	Con_Printf("here %d", &adr);
-
+	Con_Printf("here after %d\n", &adr);
+	
 	if (!iNum)
+		return;
+	
+	if (!SV_FinishCertificateCheck(&adr, nAuthProtocol, szRawCertificate, userinfo))
 		return;
 
 	if (reconnect)
