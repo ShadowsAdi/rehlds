@@ -2374,7 +2374,7 @@ void EXT_FUNC SV_ConnectClient_internal(void)
 	}
 
 	netadr_t tem;
-	Q_memcpy(&tem, &net_from, sizeof(adr));
+	Q_memcpy(&tem, &adr, sizeof(tem));
 
 	int iNum = SV_CheckUserInfo(&tem, userinfo, reconnect, nClientSlot, name);
 
