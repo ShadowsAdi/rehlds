@@ -226,6 +226,10 @@ typedef IVoidHookChainRegistryImpl<edict_t *> CRehldsHookRegistry_ED_Free;
 typedef IHookChainImpl<void, const char *> CRehldsHook_Con_Printf;
 typedef IHookChainRegistryImpl<void, const char *> CRehldsHookRegistry_Con_Printf;
 
+//SV_CheckUserInfo hook
+typedef IHookChainImpl<int, netadr_t*, char*, qboolean, int, char*> CRehldsHook_SV_CheckUserInfo;
+typedef IHookChainRegistryImpl<int, netadr_t*, char*, qboolean, int, char*> CRehldsHookRegistry_SV_CheckUserInfo;
+
 class CRehldsHookchains : public IRehldsHookchains {
 public:
 	CRehldsHookRegistry_Steam_NotifyClientConnect m_Steam_NotifyClientConnect;
@@ -276,6 +280,7 @@ public:
 	CRehldsHookRegistry_ED_Alloc m_ED_Alloc;
 	CRehldsHookRegistry_ED_Free m_ED_Free;
 	CRehldsHookRegistry_Con_Printf m_Con_Printf;
+	CRehldsHookRegistry_SV_CheckUserInfo m_SV_CheckUserInfo;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -326,6 +331,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Alloc* ED_Alloc();
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Free* ED_Free();
 	EXT_FUNC virtual IRehldsHookRegistry_Con_Printf* Con_Printf();
+	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;

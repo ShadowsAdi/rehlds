@@ -856,6 +856,10 @@ IRehldsHookRegistry_Con_Printf* CRehldsHookchains::Con_Printf() {
 	return &m_Con_Printf;
 }
 
+IRehldsHookRegistry_SV_CheckUserInfo* CRehldsHookchains::SV_CheckUserInfo() {
+	return &m_SV_CheckUserInfo;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;
