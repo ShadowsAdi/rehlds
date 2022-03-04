@@ -851,6 +851,11 @@ IRehldsHookRegistry_Con_Printf* CRehldsHookchains::Con_Printf() {
 	return &m_Con_Printf;
 }
 
+IRehldsHookRegistry_PF_precache_generic_I* CRehldsHookchains::PF_precache_generic_I()
+{
+	return &m_PF_precache_generic_I;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

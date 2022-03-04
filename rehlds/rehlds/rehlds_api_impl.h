@@ -222,6 +222,10 @@ typedef IVoidHookChainRegistryImpl<edict_t *> CRehldsHookRegistry_ED_Free;
 typedef IHookChainImpl<void, const char *> CRehldsHook_Con_Printf;
 typedef IHookChainRegistryImpl<void, const char *> CRehldsHookRegistry_Con_Printf;
 
+//PF_precache_generic_I hook
+typedef IHookChainImpl<int, char*> CRehldsHook_PF_precache_generic_I;
+typedef IHookChainRegistryImpl<int, char*> CRehldsHookRegistry_PF_precache_generic_I;
+
 class CRehldsHookchains : public IRehldsHookchains {
 public:
 	CRehldsHookRegistry_Steam_NotifyClientConnect m_Steam_NotifyClientConnect;
@@ -271,6 +275,7 @@ public:
 	CRehldsHookRegistry_ED_Alloc m_ED_Alloc;
 	CRehldsHookRegistry_ED_Free m_ED_Free;
 	CRehldsHookRegistry_Con_Printf m_Con_Printf;
+	CRehldsHookRegistry_PF_precache_generic_I m_PF_precache_generic_I;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -320,6 +325,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Alloc* ED_Alloc();
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Free* ED_Free();
 	EXT_FUNC virtual IRehldsHookRegistry_Con_Printf* Con_Printf();
+	EXT_FUNC virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;
