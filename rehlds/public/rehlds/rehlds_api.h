@@ -227,6 +227,10 @@ typedef IVoidHookChainRegistry<edict_t *> IRehldsHookRegistry_ED_Free;
 typedef IHookChain<void, const char *> IRehldsHook_Con_Printf;
 typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Con_Printf;
 
+//SV_CheckUserInfo hook
+typedef IHookChain<int, netadr_t*, char*, qboolean, int, char*> IRehldsHook_SV_CheckUserInfo;
+typedef IHookChainRegistry<int, netadr_t*, char*, qboolean, int, char*> IRehldsHookRegistry_SV_CheckUserInfo;
+
 //PF_precache_generic_I hook
 typedef IHookChain<int, char*> IRehldsHook_PF_precache_generic_I;
 typedef IHookChainRegistry<int, char*> IRehldsHookRegistry_PF_precache_generic_I;
@@ -282,7 +286,8 @@ public:
 	virtual IRehldsHookRegistry_ED_Alloc* ED_Alloc() = 0;
 	virtual IRehldsHookRegistry_ED_Free* ED_Free() = 0;
 	virtual IRehldsHookRegistry_Con_Printf* Con_Printf() = 0;
-	virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I() = 0;
+	virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo() = 0;
+  virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I() = 0;
 };
 
 struct RehldsFuncs_t {
