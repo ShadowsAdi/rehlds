@@ -280,7 +280,7 @@ public:
 	CRehldsHookRegistry_ED_Free m_ED_Free;
 	CRehldsHookRegistry_Con_Printf m_Con_Printf;
 	CRehldsHookRegistry_SV_CheckUserInfo m_SV_CheckUserInfo;
-  CRehldsHookRegistry_PF_precache_generic_I m_PF_precache_generic_I;
+	CRehldsHookRegistry_PF_precache_generic_I m_PF_precache_generic_I;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -331,7 +331,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_ED_Free* ED_Free();
 	EXT_FUNC virtual IRehldsHookRegistry_Con_Printf* Con_Printf();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo();
-  EXT_FUNC virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I();
+	EXT_FUNC virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;

@@ -287,7 +287,7 @@ public:
 	virtual IRehldsHookRegistry_ED_Free* ED_Free() = 0;
 	virtual IRehldsHookRegistry_Con_Printf* Con_Printf() = 0;
 	virtual IRehldsHookRegistry_SV_CheckUserInfo* SV_CheckUserInfo() = 0;
-  virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I() = 0;
+	virtual IRehldsHookRegistry_PF_precache_generic_I* PF_precache_generic_I() = 0;
 };
 
 struct RehldsFuncs_t {
