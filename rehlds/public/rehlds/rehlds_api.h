@@ -232,8 +232,8 @@ typedef IHookChain<int, netadr_t*, char*, qboolean, int, char*> IRehldsHook_SV_C
 typedef IHookChainRegistry<int, netadr_t*, char*, qboolean, int, char*> IRehldsHookRegistry_SV_CheckUserInfo;
 
 //PF_precache_generic_I hook
-typedef IHookChain<int, char*> IRehldsHook_PF_precache_generic_I;
-typedef IHookChainRegistry<int, char*> IRehldsHookRegistry_PF_precache_generic_I;
+typedef IHookChain<int, const char*> IRehldsHook_PF_precache_generic_I;
+typedef IHookChainRegistry<int, const char*> IRehldsHookRegistry_PF_precache_generic_I;
 
 class IRehldsHookchains {
 public:
