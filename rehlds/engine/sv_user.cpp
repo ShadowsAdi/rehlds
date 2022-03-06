@@ -1050,6 +1050,7 @@ int SV_ValidateClientCommand(char *pszCommand)
 	int i = 0;
 
 	COM_Parse(pszCommand);
+	Con_Printf("string: %s\s", pszCommand);
 	while ((p = clcommands[i]) != NULL)
 	{
 		if (!Q_stricmp(com_token, p))

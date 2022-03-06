@@ -406,7 +406,6 @@ void Host_ClientCommands(const char *fmt, ...)
 
 		MSG_WriteByte(&host_client->netchan.message, svc_stufftext);
 		MSG_WriteString(&host_client->netchan.message, string);
-		Con_Printf("string: %s", string);
 	}
 	va_end(argptr);
 }
