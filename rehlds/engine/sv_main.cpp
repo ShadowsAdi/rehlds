@@ -5127,16 +5127,19 @@ int SV_ModelIndex(const char *name)
 
 void EXT_FUNC SV_AddResource_hook(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
 {
+	Con_Printf("here 2\n");
 	SV_AddResource_internal(type, name, size, flags, index);
 }
 
 void EXT_FUNC SV_AddResource(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
 {
+	Con_Printf("here 1\n");
 	g_RehldsHookchains.m_SV_AddResource.callChain(SV_AddResource_hook, type, name, size, flags, index);
 }
 
 void SV_AddResource_internal(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
 {
+	Con_Printf("here 3\n");
 	resource_t *r;
 #ifdef REHLDS_FIXES
 	if (g_psv.num_resources >= ARRAYSIZE(g_rehlds_sv.resources))
