@@ -117,7 +117,7 @@ void EXT_FUNC Host_Error_internal(const char *error)
 	if (g_psv.active && developer.value != 0.0 )
 		CL_WriteMessageHistory(0, 0);
 
-	Con_Printf("%s: %s\n", __func__, string);
+	Con_Printf("%s: %s\n", __func__, error);
 	if (g_psv.active)
 		Host_ShutdownServer(FALSE);
 
@@ -128,7 +128,7 @@ void EXT_FUNC Host_Error_internal(const char *error)
 		inerror = FALSE;
 		longjmp(host_abortserver, 1);
 	}
-	Sys_Error("%s: %s\n", __func__, string);
+	Sys_Error("%s: %s\n", __func__, error);
 }
 
 void NORETURN Host_Error(const char *error, ...)
