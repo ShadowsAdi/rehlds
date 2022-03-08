@@ -883,6 +883,10 @@ IRehldsHookRegistry_Host_Error* CRehldsHookchains::Host_Error(){
 	return &m_Host_Error;
 }
 
+IRehldsHookRegistry_Sys_Error* CRehldsHookchains::Sys_Error(){
+	return &m_Sys_Error;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

@@ -105,6 +105,20 @@ NOXREF void Host_EndGame(const char *message, ...)
 	longjmp(host_abortserver, 1);
 }
 
+void NORETURN Host_Error(const char *error, ...)
+{
+	va_list argptr;
+	char string[1024];
+
+	va_start(argptr, error);
+
+	SCR_EndLoadingPlaque();
+	Q_vsnprintf(string, sizeof(string), error, argptr);
+	va_end(argptr);
+	
+	g_RehldsHookchains.m_Host_Error.callChain(Host_Error_internal, string);
+}
+
 void EXT_FUNC Host_Error_internal(const char *error)
 {
 	static qboolean inerror = FALSE;
@@ -129,20 +143,6 @@ void EXT_FUNC Host_Error_internal(const char *error)
 		longjmp(host_abortserver, 1);
 	}
 	Sys_Error("%s: %s\n", __func__, error);
-}
-
-void NORETURN Host_Error(const char *error, ...)
-{
-	va_list argptr;
-	char string[1024];
-
-	va_start(argptr, error);
-
-	SCR_EndLoadingPlaque();
-	Q_vsnprintf(string, sizeof(string), error, argptr);
-	va_end(argptr);
-	
-	g_RehldsHookchains.m_Host_Error.callChain(Host_Error_internal, error);
 }
 
 void Host_InitLocal(void)

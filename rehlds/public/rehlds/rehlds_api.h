@@ -259,6 +259,10 @@ typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_SV_ClientPrin
 typedef IHookChain<void, const char *> IRehldsHook_Host_Error;
 typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Host_Error;
 
+//Sys_Error hook
+typedef IHookChain<void, const char *> IRehldsHook_Sys_Error;
+typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Sys_Error;
+
 class IRehldsHookchains {
 public:
 	virtual ~IRehldsHookchains() { }
@@ -318,6 +322,7 @@ public:
 	virtual IRehldsHookRegistry_SV_AddResource* SV_AddResource() = 0;
 	virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf() = 0;
 	virtual IRehldsHookRegistry_Host_Error* Host_Error() = 0;
+	virtual IRehldsHookRegistry_Sys_Error* Sys_Error() = 0;
 };
 
 struct RehldsFuncs_t {

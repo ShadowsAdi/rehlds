@@ -80,7 +80,7 @@ extern unsigned short *host_basepal;
 
 NOXREF void Host_EndGame(const char *message, ...);
 void NORETURN Host_Error(const char *error, ...);
-void NORETURN Host_Error_internal(const char *error);
+void Host_Error_internal(const char *error);
 void Host_InitLocal(void);
 NOXREF void Info_WriteVars(FileHandle_t fp);
 void Host_WriteConfiguration(void);

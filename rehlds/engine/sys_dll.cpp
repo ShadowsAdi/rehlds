@@ -427,27 +427,32 @@ void NORETURN Sys_Error(const char *error, ...)
 {
 	va_list argptr;
 	char text[1024];
-	static qboolean bReentry;
 
 	va_start(argptr, error);
 	Q_vsnprintf(text, ARRAYSIZE(text), error, argptr);
 	va_end(argptr);
 
-#ifdef _WIN32
-	MessageBox(GetForegroundWindow(), text, "Fatal error - Dedicated server", MB_ICONERROR | MB_OK);
+	g_RehldsHookchains.m_Sys_Error.callChain(Sys_Error_internal, text);
+}
+
+void EXT_FUNC Sys_Error_internal(const char *error)
+{
+	static qboolean bReentry;
+	#ifdef _WIN32
+	MessageBox(GetForegroundWindow(), error, "Fatal error - Dedicated server", MB_ICONERROR | MB_OK);
 #endif // _WIN32
 
 	if (bReentry)
 	{
-		fprintf(stderr, "%s\n", text);
+		fprintf(stderr, "%s\n", error);
 		longjmp(host_abortserver, 2);
 	}
 	bReentry = true;
 
 	if (g_psvs.dll_initialized && gEntityInterface.pfnSys_Error)
-		gEntityInterface.pfnSys_Error(text);
+		gEntityInterface.pfnSys_Error(error);
 
-	Log_Printf("FATAL ERROR (shutting down): %s\n", text);
+	Log_Printf("FATAL ERROR (shutting down): %s\n", error);
 
 #ifdef REHLDS_FIXES
 	if (syserror_logfile.string[0] != '\0')
@@ -463,7 +468,7 @@ void NORETURN Sys_Error(const char *error, ...)
 			today = localtime(&ltime);
 			strftime(szDate, ARRAYSIZE(szDate) - 1, "L %d/%m/%Y - %H:%M:%S:", today);
 
-			FS_FPrintf(pFile, "%s (map \"%s\") %s\n", szDate, &pr_strings[gGlobalVariables.mapname], text);
+			FS_FPrintf(pFile, "%s (map \"%s\") %s\n", szDate, &pr_strings[gGlobalVariables.mapname], error);
 			FS_Close(pFile);
 		}
 	}
@@ -472,9 +477,9 @@ void NORETURN Sys_Error(const char *error, ...)
 	if (g_bIsDedicatedServer)
 	{
 		if (Launcher_ConsolePrintf)
-			Launcher_ConsolePrintf("FATAL ERROR (shutting down): %s\n", text);
+			Launcher_ConsolePrintf("FATAL ERROR (shutting down): %s\n", error);
 		else
-			printf("FATAL ERROR (shutting down): %s\n", text);
+			printf("FATAL ERROR (shutting down): %s\n", error);
 	}
 #ifndef SWDS
 	else
@@ -483,8 +488,8 @@ void NORETURN Sys_Error(const char *error, ...)
 		if (pmainwindow)
 			hWnd = *pmainwindow;
 
-		Sys_Printf(text);
-		SDL_ShowSimpleMessageBox(MB_ICONERROR | MB_OK, "Fatal Error", text, hWnd);
+		Sys_Printf(error);
+		SDL_ShowSimpleMessageBox(MB_ICONERROR | MB_OK, "Fatal Error", error, hWnd);
 		VideoMode_IsWindowed();
 	}
 #endif // SWDS

@@ -251,8 +251,12 @@ typedef IHookChainImpl<void, const char*> CRehldsHook_SV_ClientPrintf;
 typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_SV_ClientPrintf;
 
 //Host_Error hook
-typedef IHookChainImpl<void, const char*> CRehldsHook_Host_Errorf;
+typedef IHookChainImpl<void, const char*> CRehldsHook_Host_Error;
 typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_Host_Error;
+
+//Sys_Error hook
+typedef IHookChainImpl<void, const char*> CRehldsHook_Sys_Error;
+typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_Sys_Error;
 
 class CRehldsHookchains : public IRehldsHookchains {
 public:
@@ -311,6 +315,7 @@ public:
 	CRehldsHookRegistry_SV_AddResource m_SV_AddResource;
 	CRehldsHookRegistry_SV_ClientPrintf m_SV_ClientPrintf;
 	CRehldsHookRegistry_Host_Error m_Host_Error;
+	CRehldsHookRegistry_Sys_Error m_Sys_Error;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -368,6 +373,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_SV_AddResource* SV_AddResource();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf();
 	EXT_FUNC virtual IRehldsHookRegistry_Host_Error* Host_Error();
+	EXT_FUNC virtual IRehldsHookRegistry_Sys_Error* Sys_Error();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;
