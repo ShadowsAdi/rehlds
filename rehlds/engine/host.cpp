@@ -105,22 +105,15 @@ NOXREF void Host_EndGame(const char *message, ...)
 	longjmp(host_abortserver, 1);
 }
 
-void NORETURN Host_Error(const char *error, ...)
+void EXT_FUNC Host_Error_internal(const char *error)
 {
-	va_list argptr;
-	char string[1024];
 	static qboolean inerror = FALSE;
-
-	va_start(argptr, error);
-
+	
 	if (inerror)
 		Sys_Error("%s: recursively entered", __func__);
-
+	
 	inerror = TRUE;
-	SCR_EndLoadingPlaque();
-	Q_vsnprintf(string, sizeof(string), error, argptr);
-	va_end(argptr);
-
+	
 	if (g_psv.active && developer.value != 0.0 )
 		CL_WriteMessageHistory(0, 0);
 
@@ -136,6 +129,20 @@ void NORETURN Host_Error(const char *error, ...)
 		longjmp(host_abortserver, 1);
 	}
 	Sys_Error("%s: %s\n", __func__, string);
+}
+
+void NORETURN Host_Error(const char *error, ...)
+{
+	va_list argptr;
+	char string[1024];
+
+	va_start(argptr, error);
+
+	SCR_EndLoadingPlaque();
+	Q_vsnprintf(string, sizeof(string), error, argptr);
+	va_end(argptr);
+	
+	g_RehldsHookchains.m_Host_Error.callChain(Host_Error_internal, error);
 }
 
 void Host_InitLocal(void)

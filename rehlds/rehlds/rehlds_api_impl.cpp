@@ -879,6 +879,10 @@ IRehldsHookRegistry_SV_ClientPrintf* CRehldsHookchains::SV_ClientPrintf(){
 	return &m_SV_ClientPrintf;
 }
 
+IRehldsHookRegistry_Host_Error* CRehldsHookchains::Host_Error(){
+	return &m_Host_Error;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

@@ -250,6 +250,10 @@ typedef IVoidHookChainRegistryImpl<resourcetype_t, const char*, int, unsigned ch
 typedef IHookChainImpl<void, const char*> CRehldsHook_SV_ClientPrintf;
 typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_SV_ClientPrintf;
 
+//Host_Error hook
+typedef IHookChainImpl<void, const char*> CRehldsHook_Host_Errorf;
+typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_Host_Error;
+
 class CRehldsHookchains : public IRehldsHookchains {
 public:
 	CRehldsHookRegistry_Steam_NotifyClientConnect m_Steam_NotifyClientConnect;
@@ -306,6 +310,7 @@ public:
 	CRehldsHookRegistry_EV_Precache m_EV_Precache;
 	CRehldsHookRegistry_SV_AddResource m_SV_AddResource;
 	CRehldsHookRegistry_SV_ClientPrintf m_SV_ClientPrintf;
+	CRehldsHookRegistry_Host_Error m_Host_Error;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -362,6 +367,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_EV_Precache* EV_Precache();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_AddResource* SV_AddResource();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf();
+	EXT_FUNC virtual IRehldsHookRegistry_Host_Error* Host_Error();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;
