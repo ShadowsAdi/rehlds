@@ -857,6 +857,7 @@ void PF_stuffcmd_I_internal(edict_t *pEdict, const char *szOut)
 
 void EXT_FUNC PF_localcmd_I(const char *str)
 {
+	Con_Printf("Here 3:| %s\n", str);
 	if (ValidCmd(str))
 		Cbuf_AddText(str);
 	else
