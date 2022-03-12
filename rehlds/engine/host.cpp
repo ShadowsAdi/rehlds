@@ -109,22 +109,29 @@ void NORETURN Host_Error(const char *error, ...)
 {
 	va_list argptr;
 	char string[1024];
-	static qboolean inerror = FALSE;
 
 	va_start(argptr, error);
 
-	if (inerror)
-		Sys_Error("%s: recursively entered", __func__);
-
-	inerror = TRUE;
 	SCR_EndLoadingPlaque();
 	Q_vsnprintf(string, sizeof(string), error, argptr);
 	va_end(argptr);
+	
+	g_RehldsHookchains.m_Host_Error.callChain(Host_Error_internal, string);
+}
 
+void EXT_FUNC Host_Error_internal(const char *error)
+{
+	static qboolean inerror = FALSE;
+	
+	if (inerror)
+		Sys_Error("%s: recursively entered", __func__);
+	
+	inerror = TRUE;
+	
 	if (g_psv.active && developer.value != 0.0 )
 		CL_WriteMessageHistory(0, 0);
 
-	Con_Printf("%s: %s\n", __func__, string);
+	Con_Printf("%s: %s\n", __func__, error);
 	if (g_psv.active)
 		Host_ShutdownServer(FALSE);
 
@@ -135,7 +142,7 @@ void NORETURN Host_Error(const char *error, ...)
 		inerror = FALSE;
 		longjmp(host_abortserver, 1);
 	}
-	Sys_Error("%s: %s\n", __func__, string);
+	Sys_Error("%s: %s\n", __func__, error);
 }
 
 void Host_InitLocal(void)
@@ -351,19 +358,22 @@ void Host_WriteCustomConfig(void)
 
 void SV_ClientPrintf(const char *fmt, ...)
 {
+	char Dest[4096];
 	va_list va;
-	char string[1024];
 
+	va_start(va, fmt);
+	Q_vsnprintf(Dest, sizeof(Dest), fmt, va);
+	va_end(va);
+	
+	g_RehldsHookchains.m_SV_ClientPrintf.callChain(SV_ClientPrintf_internal, Dest);
+}
+
+void SV_ClientPrintf_internal(const char *Dest)
+{
 	if (!host_client->fakeclient)
 	{
-		va_start(va, fmt);
-		Q_vsnprintf(string, ARRAYSIZE(string) - 1, fmt, va);
-		va_end(va);
-
-		string[ARRAYSIZE(string) - 1] = 0;
-
 		MSG_WriteByte(&host_client->netchan.message, svc_print);
-		MSG_WriteString(&host_client->netchan.message, string);
+		MSG_WriteString(&host_client->netchan.message, Dest);
 	}
 }
 

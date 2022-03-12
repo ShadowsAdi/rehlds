@@ -855,6 +855,42 @@ IRehldsHookRegistry_SV_CheckUserInfo* CRehldsHookchains::SV_CheckUserInfo() {
 	return &m_SV_CheckUserInfo;
 }
 
+IRehldsHookRegistry_PF_precache_generic_I* CRehldsHookchains::PF_precache_generic_I() {
+	return &m_PF_precache_generic_I;
+}
+
+IRehldsHookRegistry_PF_precache_model_I* CRehldsHookchains::PF_precache_model_I() {
+	return &m_PF_precache_model_I;
+}
+
+IRehldsHookRegistry_PF_precache_sound_I* CRehldsHookchains::PF_precache_sound_I() {
+	return &m_PF_precache_sound_I;
+}
+
+IRehldsHookRegistry_EV_Precache* CRehldsHookchains::EV_Precache() {
+	return &m_EV_Precache;
+}
+
+IRehldsHookRegistry_SV_AddResource* CRehldsHookchains::SV_AddResource(){
+	return &m_SV_AddResource;
+}
+
+IRehldsHookRegistry_SV_ClientPrintf* CRehldsHookchains::SV_ClientPrintf(){
+	return &m_SV_ClientPrintf;
+}
+
+IRehldsHookRegistry_Host_Error* CRehldsHookchains::Host_Error(){
+	return &m_Host_Error;
+}
+
+IRehldsHookRegistry_Sys_Error* CRehldsHookchains::Sys_Error(){
+	return &m_Sys_Error;
+}
+
+IRehldsHookRegistry_PF_stuffcmd_I* CRehldsHookchains::PF_stuffcmd_I(){
+	return &m_PF_stuffcmd_I;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

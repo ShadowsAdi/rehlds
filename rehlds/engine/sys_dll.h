@@ -104,6 +104,7 @@ NOBODY void Sys_Init(void);
 void Sys_Sleep(int msec);
 NOBODY void Sys_DebugOutStraight(const char *pStr);
 void NORETURN Sys_Error(const char *error, ...);
+void Sys_Error_internal(const char *error);
 NOXREF void Sys_Warning(const char *pszWarning, ...);
 void Sys_Printf(const char *fmt, ...);
 void Sys_Quit(void);

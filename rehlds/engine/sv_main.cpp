@@ -5125,7 +5125,17 @@ int SV_ModelIndex(const char *name)
 	Sys_Error("%s: SV_ModelIndex: model %s not precached", __func__, name);
 }
 
+void EXT_FUNC SV_AddResource_hook(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
+{
+	SV_AddResource_internal(type, name, size, flags, index);
+}
+
 void EXT_FUNC SV_AddResource(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
+{
+	g_RehldsHookchains.m_SV_AddResource.callChain(SV_AddResource_hook, type, name, size, flags, index);
+}
+
+void SV_AddResource_internal(resourcetype_t type, const char *name, int size, unsigned char flags, int index)
 {
 	resource_t *r;
 #ifdef REHLDS_FIXES

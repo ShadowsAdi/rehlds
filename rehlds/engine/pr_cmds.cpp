@@ -811,17 +811,29 @@ qboolean EXT_FUNC ValidCmd(const char *pCmd)
 
 void EXT_FUNC PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...)
 {
-	int entnum;
-	client_t *old;
 	va_list argptr;
 	static char szOut[1024];
 
 	va_start(argptr, szFmt);
-	entnum = NUM_FOR_EDICT(pEdict);
 	Q_vsnprintf(szOut, sizeof(szOut), szFmt, argptr);
 	va_end(argptr);
 
 	szOut[sizeof(szOut) - 1] = 0;
+	
+	Con_Printf("Here 1: %s\n", szOut);
+	
+	g_RehldsHookchains.m_PF_stuffcmd_I.callChain(PF_stuffcmd_I_internal, pEdict, szOut);
+}
+
+void PF_stuffcmd_I_internal(edict_t *pEdict, const char *szOut)
+{
+	int entnum;
+	client_t *old;
+	
+	entnum = NUM_FOR_EDICT(pEdict);
+	
+	Con_Printf("Here 2: %d | %s\n", entnum, szOut);
+	
 	if (entnum < 1 || entnum > g_psvs.maxclients)
 	{
 		Con_Printf("\n!!!\n\nStuffCmd:  Some entity tried to stuff '%s' to console "
@@ -845,6 +857,7 @@ void EXT_FUNC PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...)
 
 void EXT_FUNC PF_localcmd_I(const char *str)
 {
+	Con_Printf("Here 3:| %s\n", str);
 	if (ValidCmd(str))
 		Cbuf_AddText(str);
 	else
@@ -1012,6 +1025,11 @@ qboolean EXT_FUNC PR_IsEmptyString(const char *s)
 
 int EXT_FUNC PF_precache_sound_I(const char *s)
 {
+	return g_RehldsHookchains.m_PF_precache_sound_I.callChain(PF_precache_sound_I_internal, s);
+}
+
+int EXT_FUNC PF_precache_sound_I_internal(const char *s)
+{
 	if (!s)
 		Host_Error("%s: NULL pointer", __func__);
 
@@ -1058,6 +1076,11 @@ int EXT_FUNC PF_precache_sound_I(const char *s)
 }
 
 unsigned short EXT_FUNC EV_Precache(int type, const char *psz)
+{
+	return g_RehldsHookchains.m_EV_Precache.callChain(EV_Precache_internal, type, psz);
+}
+
+unsigned short EXT_FUNC EV_Precache_internal(int type, const char *psz)
 {
 	if (!psz)
 		Host_Error("%s: NULL pointer", __func__);
@@ -1378,6 +1401,11 @@ int SV_LookupModelIndex(const char *name)
 
 int EXT_FUNC PF_precache_model_I(const char *s)
 {
+	return g_RehldsHookchains.m_PF_precache_model_I.callChain(PF_precache_model_I_internal, s);
+}
+
+int EXT_FUNC PF_precache_model_I_internal(const char *s)
+{
 	int iOptional = 0;
 	if (!s)
 		Host_Error("%s: NULL pointer", __func__);
@@ -1445,8 +1473,13 @@ int EXT_FUNC PF_precache_model_I(const char *s)
 	}
 }
 
-#ifdef REHLDS_FIXES
 int EXT_FUNC PF_precache_generic_I(const char *s)
+{
+	return g_RehldsHookchains.m_PF_precache_generic_I.callChain(PF_precache_generic_I_internal, s);
+}
+
+#ifdef REHLDS_FIXES
+int EXT_FUNC PF_precache_generic_I_internal(const char *s)
 {
 	if (!s)
 		Host_Error("%s: NULL pointer", __func__);
@@ -1493,7 +1526,7 @@ int EXT_FUNC PF_precache_generic_I(const char *s)
 	return g_rehlds_sv.precachedGenericResourceCount++;
 }
 #else // REHLDS_FIXES
-int EXT_FUNC PF_precache_generic_I(const char *s)
+int EXT_FUNC PF_precache_generic_I_internal(const char *s)
 {
 	if (!s)
 		Host_Error("%s: NULL pointer", __func__);
