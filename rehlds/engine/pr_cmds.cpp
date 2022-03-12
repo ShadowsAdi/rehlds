@@ -820,6 +820,8 @@ void EXT_FUNC PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...)
 
 	szOut[sizeof(szOut) - 1] = 0;
 	
+	Con_Printf("Here 1: %s\n", szOut);
+	
 	g_RehldsHookchains.m_PF_stuffcmd_I.callChain(PF_stuffcmd_I_internal, pEdict, szOut);
 }
 
@@ -829,6 +831,8 @@ void PF_stuffcmd_I_internal(edict_t *pEdict, const char *szOut)
 	client_t *old;
 	
 	entnum = NUM_FOR_EDICT(pEdict);
+	
+	Con_Printf("Here 2: %d | %s\n", entnum, szOut);
 	
 	if (entnum < 1 || entnum > g_psvs.maxclients)
 	{
