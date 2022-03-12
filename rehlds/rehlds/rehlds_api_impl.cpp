@@ -887,6 +887,10 @@ IRehldsHookRegistry_Sys_Error* CRehldsHookchains::Sys_Error(){
 	return &m_Sys_Error;
 }
 
+IRehldsHookRegistry_PF_stuffcmd_I* CRehldsHookchains::PF_stuffcmd_I(){
+	return &m_PF_stuffcmd_I;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

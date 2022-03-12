@@ -107,6 +107,7 @@ void PVSMark(model_t *pmodel, unsigned char *ppvs);
 edict_t *PVSFindEntities(edict_t *pplayer);
 qboolean ValidCmd(const char *pCmd);
 void PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...);
+void PF_stuffcmd_I_internal(edict_t *pEdict, const char *szOut);
 void PF_localcmd_I(const char *str);
 void PF_localexec_I(void);
 edict_t *FindEntityInSphere(edict_t *pEdictStartSearchAfter, const float *org, float rad);

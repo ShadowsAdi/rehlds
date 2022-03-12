@@ -812,7 +812,6 @@ qboolean EXT_FUNC ValidCmd(const char *pCmd)
 void EXT_FUNC PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...)
 {
 	int entnum;
-	client_t *old;
 	va_list argptr;
 	static char szOut[1024];
 
@@ -822,6 +821,14 @@ void EXT_FUNC PF_stuffcmd_I(edict_t *pEdict, const char *szFmt, ...)
 	va_end(argptr);
 
 	szOut[sizeof(szOut) - 1] = 0;
+	
+	g_RehldsHookchains.m_PF_stuffcmd_I.callChain(PF_stuffcmd_I_internal, entnum, szOut);
+}
+
+void EXT_FUNC PF_stuffcmd_I_internal(int entnum, const char *szOut)
+{
+	client_t *old;
+
 	if (entnum < 1 || entnum > g_psvs.maxclients)
 	{
 		Con_Printf("\n!!!\n\nStuffCmd:  Some entity tried to stuff '%s' to console "

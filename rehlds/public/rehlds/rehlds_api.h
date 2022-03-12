@@ -263,6 +263,10 @@ typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_Host_Error;
 typedef IVoidHookChain<const char *> IRehldsHook_Sys_Error;
 typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_Sys_Error;
 
+//PF_stuffcmd_I hook
+typedef IVoidHookChain<const char *> IRehldsHook_PF_stuffcmd_I;
+typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_PF_stuffcmd_I;
+
 class IRehldsHookchains {
 public:
 	virtual ~IRehldsHookchains() { }
@@ -323,6 +327,7 @@ public:
 	virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf() = 0;
 	virtual IRehldsHookRegistry_Host_Error* Host_Error() = 0;
 	virtual IRehldsHookRegistry_Sys_Error* Sys_Error() = 0;
+	virtual IRehldsHookRegistry_PF_stuffcmd_I* PF_stuffcmd_I() = 0;
 };
 
 struct RehldsFuncs_t {

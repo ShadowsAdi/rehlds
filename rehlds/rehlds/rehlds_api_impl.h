@@ -258,6 +258,10 @@ typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_Host_Error;
 typedef IVoidHookChainImpl<const char*> CRehldsHook_Sys_Error;
 typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_Sys_Error;
 
+//PF_stuffcmd_I hook
+typedef IVoidHookChainImpl<const char*> CRehldsHook_PF_stuffcmd_I;
+typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_PF_stuffcmd_I;
+
 class CRehldsHookchains : public IRehldsHookchains {
 public:
 	CRehldsHookRegistry_Steam_NotifyClientConnect m_Steam_NotifyClientConnect;
@@ -316,6 +320,7 @@ public:
 	CRehldsHookRegistry_SV_ClientPrintf m_SV_ClientPrintf;
 	CRehldsHookRegistry_Host_Error m_Host_Error;
 	CRehldsHookRegistry_Sys_Error m_Sys_Error;
+	CRehldsHookRegistry_PF_stuffcmd_I m_PF_stuffcmd_I;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -374,6 +379,7 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf();
 	EXT_FUNC virtual IRehldsHookRegistry_Host_Error* Host_Error();
 	EXT_FUNC virtual IRehldsHookRegistry_Sys_Error* Sys_Error();
+	EXT_FUNC virtual IRehldsHookRegistry_PF_stuffcmd_I* PF_stuffcmd_I();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;
