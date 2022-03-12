@@ -252,16 +252,16 @@ typedef IVoidHookChain<resourcetype_t, const char *, int, unsigned char, int> IR
 typedef IVoidHookChainRegistry<resourcetype_t, const char *, int, unsigned char, int> IRehldsHookRegistry_SV_AddResource;
 
 //SV_ClientPrintf hook
-typedef IHookChain<void, const char *> IRehldsHook_SV_ClientPrintf;
-typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_SV_ClientPrintf;
+typedef IVoidHookChain<const char *> IRehldsHook_SV_ClientPrintf;
+typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_SV_ClientPrintf;
 
 //Host_Error hook
-typedef IHookChain<void, const char *> IRehldsHook_Host_Error;
-typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Host_Error;
+typedef IVoidHookChain<const char *> IRehldsHook_Host_Error;
+typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_Host_Error;
 
 //Sys_Error hook
-typedef IHookChain<void, const char *> IRehldsHook_Sys_Error;
-typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Sys_Error;
+typedef IVoidHookChain<const char *> IRehldsHook_Sys_Error;
+typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_Sys_Error;
 
 class IRehldsHookchains {
 public:

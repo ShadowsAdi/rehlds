@@ -247,16 +247,16 @@ typedef IVoidHookChainImpl<resourcetype_t, const char*, int, unsigned char, int>
 typedef IVoidHookChainRegistryImpl<resourcetype_t, const char*, int, unsigned char, int> CRehldsHookRegistry_SV_AddResource;
 
 //SV_ClientPrintf hook
-typedef IHookChainImpl<void, const char*> CRehldsHook_SV_ClientPrintf;
-typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_SV_ClientPrintf;
+typedef IVoidHookChainImpl<const char*> CRehldsHook_SV_ClientPrintf;
+typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_SV_ClientPrintf;
 
 //Host_Error hook
-typedef IHookChainImpl<void, const char*> CRehldsHook_Host_Error;
-typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_Host_Error;
+typedef IVoidHookChainImpl<const char*> CRehldsHook_Host_Error;
+typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_Host_Error;
 
 //Sys_Error hook
-typedef IHookChainImpl<void, const char*> CRehldsHook_Sys_Error;
-typedef IHookChainRegistryImpl<void, const char*> CRehldsHookRegistry_Sys_Error;
+typedef IVoidHookChainImpl<const char*> CRehldsHook_Sys_Error;
+typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_Sys_Error;
 
 class CRehldsHookchains : public IRehldsHookchains {
 public:
