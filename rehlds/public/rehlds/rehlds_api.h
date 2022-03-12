@@ -264,8 +264,8 @@ typedef IVoidHookChain<const char *> IRehldsHook_Sys_Error;
 typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_Sys_Error;
 
 //PF_stuffcmd_I hook
-typedef IVoidHookChain<const char *> IRehldsHook_PF_stuffcmd_I;
-typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_PF_stuffcmd_I;
+typedef IVoidHookChain<edict_t *, const char *> IRehldsHook_PF_stuffcmd_I;
+typedef IVoidHookChainRegistry<edict_t *, const char *> IRehldsHookRegistry_PF_stuffcmd_I;
 
 class IRehldsHookchains {
 public:
