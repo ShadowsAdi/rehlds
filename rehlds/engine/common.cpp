@@ -1247,9 +1247,9 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 	data = &buf->data[buf->cursize];
 	buf->cursize = length + buf->cursize;
 	
-	unsigned char *buf = (unsigned char *)data;
+	unsigned char *wtf = (unsigned char *)data;
 	
-	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, buf);
+	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, wtf);
 
 	return data;
 }
