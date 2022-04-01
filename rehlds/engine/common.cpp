@@ -257,28 +257,24 @@ const uint32 INVBITTABLE[] =
 void MSG_WriteChar(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 1);
-	Log_Printf("WriteChar: %s\n", buf);
 	*(char *)buf = (char)c;
 }
 
 void MSG_WriteByte(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 1);
-	Log_Printf("WriteByte: %s\n", buf);
 	*(byte *)buf = (byte)c;
 }
 
 void MSG_WriteShort(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 2);
-	Log_Printf("WriteShort: %s\n", buf);
 	*(int16 *)buf = (int16)c;
 }
 
 void MSG_WriteWord(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 2);
-	Log_Printf("WriteWord: %s\n", buf);
 	*(uint16 *)buf = (uint16)c;
 }
 
@@ -298,7 +294,6 @@ void MSG_WriteString(sizebuf_t *sb, const char *s)
 {
 	if (s)
 	{
-		Log_Printf("WriteString: %s\n", s);
 		SZ_Write(sb, s, Q_strlen(s) + 1);
 	}
 	else
@@ -1243,33 +1238,18 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 #endif // REHLDS_FIXES
 
 		Con_Printf("%s: overflow on %s\n", __func__, buffername);
+		Log_Printf("%s, ovewflow on %s\n", __func__, buffername);
 		
-		const char *p = reinterpret_cast<const char*>(buf->data);
-	
-		{
-			auto pFile = FS_Open("overflowed_log.log", "a");
-			
-			if (pFile)
-			{
-				tm *today;
-				time_t ltime;
-				char szDate[32];
-
-				time(&ltime);
-				today = localtime(&ltime);
-				strftime(szDate, ARRAYSIZE(szDate) - 1, "L %d/%m/%Y - %H:%M:%S:", today);
-
-				FS_FPrintf(pFile, "SZ_GetSpace: %s (map \"%s\") %s\n", szDate, &pr_strings[gGlobalVariables.mapname], p);
-				FS_Close(pFile);
-			}
-		}
-
 		SZ_Clear(buf);
 		buf->flags |= SIZEBUF_OVERFLOWED;
 	}
 
 	data = &buf->data[buf->cursize];
 	buf->cursize = length + buf->cursize;
+	
+	unsigned char *buf = (unsigned char *)data;
+	
+	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, buf);
 
 	return data;
 }

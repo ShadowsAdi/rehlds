@@ -4744,26 +4744,8 @@ qboolean SV_SendClientDatagram(client_t *client)
 
 	SV_WriteClientdataToMessage(client, &msg);
 	SV_WriteEntitiesToClient(client, &msg);
-
-	const char *p = reinterpret_cast<const char*>(buf);
 	
-	{
-		auto pFile = FS_Open("overflowed_log.log", "a");
-		
-		if (pFile)
-		{
-			tm *today;
-			time_t ltime;
-			char szDate[32];
-
-			time(&ltime);
-			today = localtime(&ltime);
-			strftime(szDate, ARRAYSIZE(szDate) - 1, "L %d/%m/%Y - %H:%M:%S:", today);
-
-			FS_FPrintf(pFile, "SV_SendClientDatagram: %s (map \"%s\") %s\n", szDate, &pr_strings[gGlobalVariables.mapname], p);
-			FS_Close(pFile);
-		}
-	}
+	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, buf);
 	
 	if (client->datagram.flags & SIZEBUF_OVERFLOWED)
 	{
