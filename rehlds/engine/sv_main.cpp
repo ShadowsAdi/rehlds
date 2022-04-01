@@ -4745,7 +4745,7 @@ qboolean SV_SendClientDatagram(client_t *client)
 	SV_WriteClientdataToMessage(client, &msg);
 	SV_WriteEntitiesToClient(client, &msg);
 	
-	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, buf);
+	Log_Printf("%s, ovewflow | buf: %d\n", __func__, buf);
 	
 	if (client->datagram.flags & SIZEBUF_OVERFLOWED)
 	{
