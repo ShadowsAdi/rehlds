@@ -257,24 +257,28 @@ const uint32 INVBITTABLE[] =
 void MSG_WriteChar(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 1);
+	Log_Printf("WriteChar: %s\n", buf);
 	*(char *)buf = (char)c;
 }
 
 void MSG_WriteByte(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 1);
+	Log_Printf("WriteByte: %s\n", buf);
 	*(byte *)buf = (byte)c;
 }
 
 void MSG_WriteShort(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 2);
+	Log_Printf("WriteShort: %s\n", buf);
 	*(int16 *)buf = (int16)c;
 }
 
 void MSG_WriteWord(sizebuf_t *sb, int c)
 {
 	unsigned char *buf = (unsigned char *)SZ_GetSpace(sb, 2);
+	Log_Printf("WriteWord: %s\n", buf);
 	*(uint16 *)buf = (uint16)c;
 }
 
@@ -294,6 +298,7 @@ void MSG_WriteString(sizebuf_t *sb, const char *s)
 {
 	if (s)
 	{
+		Log_Printf("WriteString: %s\n", s);
 		SZ_Write(sb, s, Q_strlen(s) + 1);
 	}
 	else
@@ -1239,7 +1244,7 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 
 		Con_Printf("%s: overflow on %s\n", __func__, buffername);
 		
-		const char *p = reinterpret_cast<const char*>(buf);
+		const char *p = reinterpret_cast<const char*>(buf->data);
 	
 		{
 			auto pFile = FS_Open("overflowed_log.log", "a");
