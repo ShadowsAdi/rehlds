@@ -1185,7 +1185,6 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 	void *data;
 	const char *buffername = buf->buffername ? buf->buffername : "???";
 
-
 	if (length < 0)
 	{
 		Sys_Error("%s: %i negative length on %s", __func__, length, buffername);
@@ -1239,6 +1238,26 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 #endif // REHLDS_FIXES
 
 		Con_Printf("%s: overflow on %s\n", __func__, buffername);
+		
+		const char *p = reinterpret_cast<const char*>(buf);
+	
+		{
+			auto pFile = FS_Open("overflowed_log.log", "a");
+			
+			if (pFile)
+			{
+				tm *today;
+				time_t ltime;
+				char szDate[32];
+
+				time(&ltime);
+				today = localtime(&ltime);
+				strftime(szDate, ARRAYSIZE(szDate) - 1, "L %d/%m/%Y - %H:%M:%S:", today);
+
+				FS_FPrintf(pFile, "SZ_GetSpace: %s (map \"%s\") %s\n", szDate, &pr_strings[gGlobalVariables.mapname], p);
+				FS_Close(pFile);
+			}
+		}
 
 		SZ_Clear(buf);
 		buf->flags |= SIZEBUF_OVERFLOWED;
