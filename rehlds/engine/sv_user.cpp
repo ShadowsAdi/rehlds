@@ -77,6 +77,7 @@ clc_func_t sv_clcfuncs[] = {
 };
 
 bool EXT_FUNC SV_CheckConsistencyResponse_API(IGameClient *client, resource_t *res, uint32 hash) {
+	Con_Printf("Response: %d | %s | %d\n", client, res->szFileName, hash);
 	return (hash != *(uint32 *)&res->rgucMD5_hash[0]);
 }
 
