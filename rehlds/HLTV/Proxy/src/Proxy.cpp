@@ -2089,7 +2089,7 @@ resource_t *Proxy::AddResource(char *fileName, resourcetype_t type, char *asFile
 
 resource_t *Proxy::GetResource(char *fileName)
 {
-	m_System->Printf("resource: %s\n", filename);
+	m_System->Printf("resource: %s\n", fileName);
 	resource_t *resource = (resource_t *)m_Resources.GetFirst();
 	while (resource)
 	{
