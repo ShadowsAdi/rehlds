@@ -261,6 +261,7 @@ void MD5Transform(unsigned int buf[4], const unsigned int in[16])
 
 BOOL MD5_Hash_File(unsigned char digest[16], char *pszFileName, BOOL bUsefopen, BOOL bSeed, unsigned int seed[4])
 {
+	Con_Printf("Here: %s | %s", pszFileName, digest);
 	FileHandle_t fp = (FileHandle_t)FS_OpenPathID(pszFileName, "rb", "GAMECONFIG");
 	if (!fp)
 		fp = FS_Open(pszFileName, "rb");
