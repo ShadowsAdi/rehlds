@@ -1226,8 +1226,6 @@ void SV_SendResources(sizebuf_t *msg)
 			MSG_WriteBits(1, 1);
 			MSG_WriteBitData(r->rguc_reserved, sizeof(r->rguc_reserved));
 		}
-		
-		Con_Printf("File: %d | %s | %d | %d | %d | %d | %d\n", r->type, r->szFileName, r->nIndex, r->nDownloadSize, r->ucFlags, r->rgucMD5_hash, r->rguc_reserved );
 	}
 
 	SV_SendConsistencyList(msg);
@@ -1580,6 +1578,8 @@ void SV_SendRes_f(void)
 	msg.maxsize = sizeof(data);
 	msg.cursize = 0;
 	msg.flags = SIZEBUF_CHECK_OVERFLOW;
+	
+	Con_Printf("Called \n");
 
 	if (cmd_source != src_command && (!host_client->spawned || host_client->active))
 	{

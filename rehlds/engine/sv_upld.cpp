@@ -417,8 +417,6 @@ void SV_ParseResourceList(client_t *pSenderClient)
 		resource->pNext = NULL;
 		resource->pPrev = NULL;
 
-		Con_Printf("Res: %s | %s\n", resource->szFileName, resource->rgucMD5_hash);
-
 #ifdef REHLDS_FIXES
 		SV_AddToResourceList(resource, &host_client->resourcesneeded);	// FIXED: Mem leak. Add to list to free current resource in SV_ClearResourceList if something goes wrong.
 #endif // REHLDS_FIXES
