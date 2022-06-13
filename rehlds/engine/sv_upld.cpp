@@ -232,6 +232,8 @@ void SV_MoveToOnHandList(resource_t *pResource)
 
 void SV_AddToResourceList(resource_t *pResource, resource_t *pList)
 {
+	Con_Printf("Here 1\n");
+	
 	if (pResource->pPrev || pResource->pNext)
 	{
 		Con_Printf("Resource already linked\n");
