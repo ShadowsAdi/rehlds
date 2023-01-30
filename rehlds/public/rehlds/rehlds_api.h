@@ -227,7 +227,6 @@ typedef IVoidHookChainRegistry<edict_t *> IRehldsHookRegistry_ED_Free;
 typedef IHookChain<void, const char *> IRehldsHook_Con_Printf;
 typedef IHookChainRegistry<void, const char *> IRehldsHookRegistry_Con_Printf;
 
-//SV_CheckUserInfo hook
 typedef IHookChain<int, netadr_t *, char *, qboolean, int, char *> IRehldsHook_SV_CheckUserInfo;
 typedef IHookChainRegistry<int, netadr_t *, char *, qboolean, int, char *> IRehldsHookRegistry_SV_CheckUserInfo;
 
@@ -254,6 +253,10 @@ typedef IVoidHookChainRegistry<resourcetype_t, const char *, int, unsigned char,
 //SV_ClientPrintf hook
 typedef IVoidHookChain<const char *> IRehldsHook_SV_ClientPrintf;
 typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_SV_ClientPrintf;
+
+//SV_CheckUserInfo hook
+typedef IHookChain<int, netadr_t*, char*, qboolean, int, char*> IRehldsHook_SV_CheckUserInfo;
+typedef IHookChainRegistry<int, netadr_t*, char*, qboolean, int, char*> IRehldsHookRegistry_SV_CheckUserInfo;
 
 class IRehldsHookchains {
 public:
