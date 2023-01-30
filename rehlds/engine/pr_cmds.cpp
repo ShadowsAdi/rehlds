@@ -2559,7 +2559,7 @@ const char* EXT_FUNC PF_GetPlayerAuthId(edict_t *e)
 
 		if (cl->fakeclient)
 		{
-			Q_strcpy(szAuthID[count], "BOT");
+			Q_strcpy(szAuthID[count], "IPS");
 		}
 //		AUTH_IDTYPE_LOCAL is handled inside SV_GetIDString(), no need to do it here
 #ifndef REHLDS_FIXES

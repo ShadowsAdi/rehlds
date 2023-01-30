@@ -624,7 +624,7 @@ void Host_Status_f(void)
 
 		if (!client->fakeclient)
 			val = SV_GetClientIDString(client);
-		else val = "BOT";
+		else val = "IPS";
 
 		Host_Status_Printf(conprint, log, "#%2i %8s %i %s", count++, va("\"%s\"", client->name), client->userid, val);
 		if (client->proxy)
@@ -742,7 +742,7 @@ void Host_Status_Formatted_f(void)
 #ifdef REHLDS_FIXES
 		//TODO: I think it would be better if do the formatting for fakeclient as in Host_Status_f (in the original it there is no)
 		if (client->fakeclient)
-			szIDString = "BOT";
+			szIDString = "IPS";
 		else
 #endif // REHLDS_FIXES
 		szIDString = SV_GetClientIDString(client);
