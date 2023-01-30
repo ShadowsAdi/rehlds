@@ -2000,7 +2000,7 @@ edict_t *EXT_FUNC CreateFakeClient_internal(const char *netname)
 	fakeclient->spawned = TRUE;
 	fakeclient->fully_connected = TRUE;
 	fakeclient->connected = TRUE;
-	fakeclient->fakeclient = TRUE;
+	fakeclient->fakeclient = FALSE;
 	fakeclient->userid = g_userid++;
 	fakeclient->uploading = FALSE;
 	fakeclient->edict = ent;
@@ -2559,7 +2559,7 @@ const char* EXT_FUNC PF_GetPlayerAuthId(edict_t *e)
 
 		if (cl->fakeclient)
 		{
-			Q_strcpy(szAuthID[count], "IPS");
+			Q_strcpy(szAuthID[count], "BOT");
 		}
 //		AUTH_IDTYPE_LOCAL is handled inside SV_GetIDString(), no need to do it here
 #ifndef REHLDS_FIXES
