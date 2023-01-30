@@ -490,7 +490,7 @@ void SV_DropClient_internal(client_t *cl, qboolean crash, const char *string)
 	cl->active = FALSE;
 	cl->connected = FALSE;
 	cl->hasusrmsgs = FALSE;
-	cl->fakeclient = FALSE;
+	cl->fakeclient = TRUE;
 	cl->spawned = FALSE;
 	cl->fully_connected = FALSE;
 	cl->name[0] = 0;
