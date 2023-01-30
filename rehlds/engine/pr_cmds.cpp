@@ -2006,7 +2006,7 @@ edict_t *EXT_FUNC CreateFakeClient_internal(const char *netname)
 	fakeclient->edict = ent;
 	ent->v.netname = (size_t)fakeclient->name - (size_t)pr_strings;
 	ent->v.pContainingEntity = ent;
-	ent->v.flags = FL_FAKECLIENT | FL_CLIENT;
+	ent->v.flags = FL_CLIENT;
 
 	Info_SetValueForKey(fakeclient->userinfo, "name", netname, MAX_INFO_STRING);
 	Info_SetValueForKey(fakeclient->userinfo, "model", "gordon", MAX_INFO_STRING);
