@@ -2003,7 +2003,7 @@ edict_t *EXT_FUNC CreateFakeClient_internal(const char *netname)
 	fakeclient->fakeclient = TRUE;
 	fakeclient->userid = g_userid++;
 	fakeclient->uploading = FALSE;
-	fakeclient->netchan.remote_address.type == NA_LOOPBACK;
+	fakeclient->netchan.remote_address.type = NA_LOOPBACK;
 	fakeclient->edict = ent;
 	ent->v.netname = (size_t)fakeclient->name - (size_t)pr_strings;
 	ent->v.pContainingEntity = ent;
