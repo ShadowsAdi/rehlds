@@ -256,11 +256,11 @@ typedef IHookChainRegistryImpl<bool, edict_t*, edict_t*> CRehldsHookRegistry_SV_
 
 //PF_MessageBegin_I hook
 typedef IVoidHookChain<int, int, const float *, edict_t *> CRehldsHook_PF_MessageBegin_I;
-typedef IVoidHookChainRegistry<int, int, const float *, edict_t *> CRehldsHookRegistry_PF_MessageBegin_I;
+typedef IVoidHookChainRegistryImpl<int, int, const float *, edict_t *> CRehldsHookRegistry_PF_MessageBegin_I;
 
 //PF_MessageEnd_I hook
 typedef IVoidHookChain<> CRehldsHook_PF_MessageEnd_I;
-typedef IVoidHookChainRegistry<> CRehldsHookRegistry_PF_MessageEnd_I;
+typedef IVoidHookChainRegistryImpl<> CRehldsHookRegistry_PF_MessageEnd_I;
 
 class CRehldsHookchains : public IRehldsHookchains {
 public:
