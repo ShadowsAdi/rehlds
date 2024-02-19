@@ -254,6 +254,14 @@ typedef IVoidHookChainRegistryImpl<const char*> CRehldsHookRegistry_SV_ClientPri
 typedef IHookChainImpl<bool, edict_t*, edict_t*> CRehldsHook_SV_AllowPhysent;
 typedef IHookChainRegistryImpl<bool, edict_t*, edict_t*> CRehldsHookRegistry_SV_AllowPhysent;
 
+//PF_MessageBegin_I hook
+typedef IVoidHookChain<int, int, const float *, edict_t *> IRehldsHook_PF_MessageBegin_I;
+typedef IVoidHookChainRegistry<int, int, const float *, edict_t *> IRehldsHookRegistry_PF_MessageBegin_I;
+
+//PF_MessageEnd_I hook
+typedef IVoidHookChain<> IRehldsHook_PF_MessageEnd_I;
+typedef IVoidHookChainRegistry<> IRehldsHookRegistry_PF_MessageEnd_I;
+
 class CRehldsHookchains : public IRehldsHookchains {
 public:
 	CRehldsHookRegistry_Steam_NotifyClientConnect m_Steam_NotifyClientConnect;
@@ -311,6 +319,8 @@ public:
 	CRehldsHookRegistry_SV_AddResource m_SV_AddResource;
 	CRehldsHookRegistry_SV_ClientPrintf m_SV_ClientPrintf;
 	CRehldsHookRegistry_SV_AllowPhysent m_SV_AllowPhysent;
+	CRehldsHookRegistry_PF_MessageBegin_I m_PF_MessageBegin_I;
+	CRehldsHookRegistry_PF_MessageEnd_I m_PF_MessageEnd_I;
 
 public:
 	EXT_FUNC virtual IRehldsHookRegistry_Steam_NotifyClientConnect* Steam_NotifyClientConnect();
@@ -368,6 +378,8 @@ public:
 	EXT_FUNC virtual IRehldsHookRegistry_SV_AddResource* SV_AddResource();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf();
 	EXT_FUNC virtual IRehldsHookRegistry_SV_AllowPhysent* SV_AllowPhysent();
+	EXT_FUNC virtual IRehldsHookRegistry_PF_MessageBegin_I* PF_MessageBegin_I();
+	EXT_FUNC virtual IRehldsHookRegistry_PF_MessageEnd_I* PF_MessageEnd_I();
 };
 
 extern CRehldsHookchains g_RehldsHookchains;

@@ -885,6 +885,14 @@ IRehldsHookRegistry_SV_AllowPhysent* CRehldsHookchains::SV_AllowPhysent() {
 	return &m_SV_AllowPhysent;
 }
 
+IRehldsHookRegistry_PF_MessageBegin_I* CRehldsHookchains::PF_MessageBegin_I() {
+	return &m_PF_MessageBegin_I;
+}
+
+IRehldsHookRegistry_PF_MessageEnd_I* CRehldsHookchains::PF_MessageEnd_I() {
+	return &m_PF_MessageEnd_I;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;
