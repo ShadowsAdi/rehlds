@@ -2105,7 +2105,12 @@ sizebuf_t* EXT_FUNC WriteDest_Parm(int dest)
 	}
 }
 
-void PF_MessageBegin_I(int msg_dest, int msg_type, const float *pOrigin, edict_t *ed)
+void EXT_FUNC PF_MessageBegin_I(int msg_dest, int msg_type, const float *pOrigin, edict_t *ed)
+{
+	PF_MessageBegin_I_api(msg_dest, msg_type, pOrigin, ed);
+}
+
+void PF_MessageBegin_I_api(int msg_dest, int msg_type, const float *pOrigin, edict_t *ed)
 {
 	g_RehldsHookchains.m_PF_MessageBegin_I.callChain(PF_MessageBegin_I_internal, msg_dest, msg_type, pOrigin, ed);
 }
@@ -2151,7 +2156,12 @@ void EXT_FUNC PF_MessageBegin_I_internal(int msg_dest, int msg_type, const float
 	gMsgBuffer.cursize = 0;
 }
 
-void PF_MessageEnd_I(void)
+void EXT_FUNC PF_MessageEnd_I(void)
+{
+	PF_MessageEnd_I_api();
+}
+
+void PF_MessageEnd_I_api(void)
 {
 	g_RehldsHookchains.m_PF_MessageEnd_I.callChain(PF_MessageEnd_I_internal);
 }
