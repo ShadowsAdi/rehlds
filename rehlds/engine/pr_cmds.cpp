@@ -2110,7 +2110,7 @@ void EXT_FUNC PF_MessageBegin_I(int msg_dest, int msg_type, const float *pOrigin
 	int i = NUM_FOR_EDICT(ed);
 	
 	if (con_debuglog)
-		Con_DebugLog("%d | %d | %f %f %f | %d", msg_dest, msg_type, pOrigin[0], pOrigin[1], pOrigin[2], i);
+		Con_DebugLog("teste.log", "%d | %d | %f %f %f | %d", msg_dest, msg_type, pOrigin[0], pOrigin[1], pOrigin[2], i);
 	PF_MessageBegin_I_api(msg_dest, msg_type, pOrigin, ed);
 }
 
