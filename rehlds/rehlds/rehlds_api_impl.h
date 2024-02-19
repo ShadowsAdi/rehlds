@@ -255,12 +255,12 @@ typedef IHookChainImpl<bool, edict_t*, edict_t*> CRehldsHook_SV_AllowPhysent;
 typedef IHookChainRegistryImpl<bool, edict_t*, edict_t*> CRehldsHookRegistry_SV_AllowPhysent;
 
 //PF_MessageBegin_I hook
-typedef IVoidHookChain<int, int, const float *, edict_t *> IRehldsHook_PF_MessageBegin_I;
-typedef IVoidHookChainRegistry<int, int, const float *, edict_t *> IRehldsHookRegistry_PF_MessageBegin_I;
+typedef IVoidHookChain<int, int, const float *, edict_t *> CRehldsHook_PF_MessageBegin_I;
+typedef IVoidHookChainRegistry<int, int, const float *, edict_t *> CRehldsHookRegistry_PF_MessageBegin_I;
 
 //PF_MessageEnd_I hook
-typedef IVoidHookChain<> IRehldsHook_PF_MessageEnd_I;
-typedef IVoidHookChainRegistry<> IRehldsHookRegistry_PF_MessageEnd_I;
+typedef IVoidHookChain<> CRehldsHook_PF_MessageEnd_I;
+typedef IVoidHookChainRegistry<> CRehldsHookRegistry_PF_MessageEnd_I;
 
 class CRehldsHookchains : public IRehldsHookchains {
 public:
