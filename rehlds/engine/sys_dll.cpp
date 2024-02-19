@@ -124,7 +124,7 @@ enginefuncs_t g_engfuncsExportedToDlls = {
 	PF_localexec_I, PF_stuffcmd_I,
 	PF_particle_I, PF_lightstyle_I,
 	PF_DecalIndex, PF_pointcontents_I,
-	PF_MessageBegin_I, PF_MessageEnd_I,
+	PF_MessageBegin_I_api, PF_MessageEnd_I_api,
 	PF_WriteByte_I, PF_WriteChar_I,
 	PF_WriteShort_I, PF_WriteLong_I,
 	PF_WriteAngle_I, PF_WriteCoord_I,
