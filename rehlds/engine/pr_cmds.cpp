@@ -2107,6 +2107,7 @@ sizebuf_t* EXT_FUNC WriteDest_Parm(int dest)
 
 void EXT_FUNC PF_MessageBegin_I(int msg_dest, int msg_type, const float *pOrigin, edict_t *ed)
 {
+	Con_Printf("%d | %d | %f %f %f | %d", msg_dest, msg_type, pOrigin[0], pOrigin[1], pOrigin[2], ed);
 	PF_MessageBegin_I_api(msg_dest, msg_type, pOrigin, ed);
 }
 
