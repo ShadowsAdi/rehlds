@@ -2107,7 +2107,8 @@ sizebuf_t* EXT_FUNC WriteDest_Parm(int dest)
 
 void EXT_FUNC PF_MessageBegin_I(int msg_dest, int msg_type, const float *pOrigin, edict_t *ed)
 {
-	Log_Printf("%d | %d | %f %f %f |", msg_dest, msg_type, pOrigin[0], pOrigin[1], pOrigin[2]);
+	if(g_psvs.log.active)
+		Log_Printf("%d | %d | %f %f %f |", msg_dest, msg_type, pOrigin[0], pOrigin[1], pOrigin[2]);
 	
 	g_RehldsHookchains.m_PF_MessageBegin_I.callChain(PF_MessageBegin_I_internal, msg_dest, msg_type, pOrigin, ed);
 }
