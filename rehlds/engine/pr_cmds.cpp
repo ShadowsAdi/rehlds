@@ -2355,7 +2355,7 @@ void EXT_FUNC PF_WriteCoord_I_internal(float flValue)
 
 void EXT_FUNC PF_WriteString_I(const char *sz)
 {
-	g_RehldsHookchains.m_PF_WriteCoord_I.callChain(PF_WriteCoord_I_internal, sz);
+	g_RehldsHookchains.m_PF_WriteString_I.callChain(PF_WriteString_I_internal, sz);
 }
 
 void EXT_FUNC PF_WriteString_I_internal(const char *sz)
