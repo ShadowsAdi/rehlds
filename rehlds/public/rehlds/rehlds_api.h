@@ -259,6 +259,14 @@ typedef IVoidHookChainRegistry<const char *> IRehldsHookRegistry_SV_ClientPrintf
 typedef IHookChain<bool, edict_t*, edict_t*> IRehldsHook_SV_AllowPhysent;
 typedef IHookChainRegistry<bool, edict_t*, edict_t*> IRehldsHookRegistry_SV_AllowPhysent;
 
+//PF_MessageBegin_I hook
+typedef IVoidHookChain<int, int, const float *, edict_t *> IRehldsHook_PF_MessageBegin_I;
+typedef IVoidHookChainRegistry<int, int, const float *, edict_t *> IRehldsHookRegistry_PF_MessageBegin_I;
+
+//PF_MessageEnd_I hook
+typedef IVoidHookChain<> IRehldsHook_PF_MessageEnd_I;
+typedef IVoidHookChainRegistry<> IRehldsHookRegistry_PF_MessageEnd_I;
+
 class IRehldsHookchains {
 public:
 	virtual ~IRehldsHookchains() { }
@@ -318,6 +326,8 @@ public:
 	virtual IRehldsHookRegistry_SV_AddResource* SV_AddResource() = 0;
 	virtual IRehldsHookRegistry_SV_ClientPrintf* SV_ClientPrintf() = 0;
 	virtual IRehldsHookRegistry_SV_AllowPhysent* SV_AllowPhysent() = 0;
+	virtual IRehldsHookRegistry_PF_MessageBegin_I* PF_MessageBegin_I() = 0;
+	virtual IRehldsHookRegistry_PF_MessageEnd_I* PF_MessageEnd_I() = 0;
 };
 
 struct RehldsFuncs_t {
