@@ -2334,7 +2334,7 @@ void EXT_FUNC PF_WriteAngle_I(float flValue)
 	g_RehldsHookchains.m_PF_WriteAngle_I.callChain(PF_WriteAngle_I_internal, flValue);
 }
 
-void EXT_FUNC PF_WriteAngle_I(float flValue)
+void EXT_FUNC PF_WriteAngle_I_internal(float flValue)
 {
 	if (!gMsgStarted)
 		Sys_Error("%s: called with no active message\n", __func__);
