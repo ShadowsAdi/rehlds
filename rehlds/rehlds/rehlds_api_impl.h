@@ -256,7 +256,7 @@ typedef IHookChainRegistryImpl<bool, edict_t*, edict_t*> CRehldsHookRegistry_SV_
 
 //SV_SendResources hook
 typedef IVoidHookChainImpl<> CRehldsHook_SV_SendResources;
-typedef IVoidHookChainRegistryImpl<> CRehldsHookRegistry_SSV_SendResources;
+typedef IVoidHookChainRegistryImpl<> CRehldsHookRegistry_SV_SendResources;
 
 class CRehldsHookchains : public IRehldsHookchains {
 public:
