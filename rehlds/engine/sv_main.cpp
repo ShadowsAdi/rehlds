@@ -1206,6 +1206,8 @@ void SV_SendResources(sizebuf_t *msg)
 	MSG_WriteByte(msg, svc_resourcerequest);
 	MSG_WriteLong(msg, g_psvs.spawncount);
 	MSG_WriteLong(msg, 0);
+	
+	Con_Printf("Here 2");
 
 	if (sv_downloadurl.string && sv_downloadurl.string[0] != 0 && Q_strlen(sv_downloadurl.string) < 129)
 	{
@@ -7800,6 +7802,8 @@ void SV_BeginFileDownload_f(void)
 		SV_FailDownload(name);
 		return;
 	}
+	
+	Con_Printf("Here 1");
 
 	// Regular downloads
 	if (name[0] != '!')
