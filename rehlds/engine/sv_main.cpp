@@ -1215,6 +1215,7 @@ void SV_SendResources_internal(sizebuf_t *msg)
 	if (sv_downloadurl.string && sv_downloadurl.string[0] != 0 && Q_strlen(sv_downloadurl.string) < 129)
 	{
 		MSG_WriteByte(msg, svc_resourcelocation);
+		Con_Printf("Testing: %s\n", sv_downloadurl.string);
 		MSG_WriteString(msg, sv_downloadurl.string);
 	}
 
