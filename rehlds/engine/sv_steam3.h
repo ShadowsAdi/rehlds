@@ -116,8 +116,8 @@ public:
 	CSteam3Client() :
 		m_CallbackClientGameServerDeny(this, &CSteam3Client::OnClientGameServerDeny),
 		m_CallbackGameServerChangeRequested(this, &CSteam3Client::OnGameServerChangeRequested),
-		m_CallbackGameOverlayActivated(this, &CSteam3Client::OnGameOverlayActivated))),
-		m_CallbackGameRichPresenceJoinRequested(this, &CSteam3Client::OnGameRichPresenceJoinRequested)))
+		m_CallbackGameOverlayActivated(this, &CSteam3Client::OnGameOverlayActivated),
+		m_CallbackGameRichPresenceJoinRequested(this, &CSteam3Client::OnGameRichPresenceJoinRequested)
 	{}
 
 	virtual void Shutdown();
