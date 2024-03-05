@@ -1210,7 +1210,7 @@ void UnsafeCmdLineProcessor(const char *pchUnsafeCmdLine, int cubSize)
 	// mov ecx, 7463656Eh
 	const char* szPrefix = "nocmd tece ";
 	netadr_t *address;
-	const char *szSanitizedConnect;
+	char szSanitizedConnect[128];
 	//void *s1 = nullptr;
 	Con_Printf("test: %s", pchUnsafeCmdLine);
 	
