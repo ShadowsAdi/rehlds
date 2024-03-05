@@ -1214,7 +1214,7 @@ void UnsafeCmdLineProcessor(const char *pchUnsafeCmdLine, int cubSize)
 	//void *s1 = nullptr;
 	Con_Printf("test: %s", pchUnsafeCmdLine);
 	
-	if(!Q_strcmp(pchUnsafeCmdLine, szPrefix, sizeof(szPrefix) - 1))
+	if(Q_strcmp(pchUnsafeCmdLine, szPrefix) == 0)
 	{
 		if (cubSize > count && pchUnsafeCmdLine[9] != ' ')
 		{
