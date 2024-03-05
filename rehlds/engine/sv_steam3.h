@@ -119,7 +119,9 @@ public:
 		m_CallbackGameOverlayActivated(this, &CSteam3Client::OnGameOverlayActivated),
 		m_CallbackGameRichPresenceJoinRequested(this, &CSteam3Client::OnGameRichPresenceJoinRequested)
 	{}
-
+	
+	client_t *ClientFindFromSteamID(class CSteamID &steamIDFind);
+	
 	virtual void Shutdown();
 
 	int InitiateGameConnection(void *pData, int cbMaxData, uint64 steamID, uint32 unIPServer, uint16 usPortServer, bool bSecure);
