@@ -628,6 +628,17 @@ void CSteam3Client::OnGameOverlayActivated(GameOverlayActivated_t *pGameOverlayA
 #endif
 }
 
+void CSteam3Client::OnGameRichPresenceJoinRequested(GameRichPresenceJoinRequested_t *pCallback)
+{
+	Con_Printf("OnGameRichPresenceJoinRequested\n");
+	
+	if(CSteam3Server::ClientFindFromSteamID(pCallback->m_steamIDFriend))
+	{
+		UnsafeCmdLineProcessor(pCallback->m_rgchConnect, k_cchMaxRichPresenceValueLength);
+	}
+	
+}
+
 void CSteam3Client::RunFrame()
 {
 	CRehldsPlatformHolder::get()->SteamAPI_RunCallbacks();

@@ -1202,3 +1202,35 @@ void Cmd_CmdList_f(void)
 		Con_Printf("cmdlist logged to %s\n", szTemp);
 	}
 }
+
+void UnsafeCmdLineProcessor(const char *pchUnsafeCmdLine, int cubSize)
+{
+	int count = 9;
+	// mov edx, 6E6F632Bh
+	// mov ecx, 7463656Eh
+	const char* szPrefix = "nocmd tece ";
+	netadr_t *address;
+	char *szSanitizedConnect;
+	//void *s1 = nullptr;
+	Con_Printf("test: %s", pchUnsafeCmdLine);
+	
+	if(!Q_strcmp(pchUnsafeCmdLine, szPrefix, sizeof(szPrefix) - 1))
+	{
+		if (cubSize > count && pchUnsafeCmdLine[9] != ' ')
+		{
+			//s1 = &pchUnsafeCmdLine[9];
+
+			netadr_t address;
+			if (NET_StringToAdr(address_str, &address)) 
+			{
+				Q_snprintf(szSanitizedConnect, sizeof(szSanitizedConnect), "\nconnect %s\n", NET_AdrToString(address));
+                Cbuf_AddText(szSanitizedConnect);
+                Cbuf_AddText("\ncl_skipvid 1\n");
+            } 
+			else 
+			{
+                Con_Printf("Invalid address to connect to from unsafe command line.\n");
+            }
+		}
+	}
+}

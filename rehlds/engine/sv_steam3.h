@@ -111,11 +111,13 @@ public:
 	STEAM_CALLBACK(CSteam3Client, OnClientGameServerDeny, ClientGameServerDeny_t, m_CallbackClientGameServerDeny);
 	STEAM_CALLBACK(CSteam3Client, OnGameServerChangeRequested, GameServerChangeRequested_t, m_CallbackGameServerChangeRequested);
 	STEAM_CALLBACK(CSteam3Client, OnGameOverlayActivated, GameOverlayActivated_t, m_CallbackGameOverlayActivated);
+	STEAM_CALLBACK(CSteam3Client, OnGameRichPresenceJoinRequested, GameRichPresenceJoinRequested_t, m_CallbackGameRichPresenceJoinRequested);
 
 	CSteam3Client() :
 		m_CallbackClientGameServerDeny(this, &CSteam3Client::OnClientGameServerDeny),
 		m_CallbackGameServerChangeRequested(this, &CSteam3Client::OnGameServerChangeRequested),
-		m_CallbackGameOverlayActivated(this, &CSteam3Client::OnGameOverlayActivated)
+		m_CallbackGameOverlayActivated(this, &CSteam3Client::OnGameOverlayActivated))),
+		m_CallbackGameRichPresenceJoinRequested(this, &CSteam3Client::OnGameRichPresenceJoinRequested)))
 	{}
 
 	virtual void Shutdown();
