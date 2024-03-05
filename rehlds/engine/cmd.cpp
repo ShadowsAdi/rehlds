@@ -1211,27 +1211,28 @@ void UnsafeCmdLineProcessor(const char *pchUnsafeCmdLine, int cubSize)
 	const char* szPrefix = "nocmd tece ";
 	netadr_t *address;
 	char szSanitizedConnect[128];
-	//void *s1 = nullptr;
-	Con_Printf("test: %s", pchUnsafeCmdLine);
 	
+	// 0x3039617A415A5F2D2E3A
+	// "09azAZ_-.:" ????
+
 	if(Q_strcmp(pchUnsafeCmdLine, szPrefix) == 0)
 	{
 		if (cubSize > count && pchUnsafeCmdLine[9] != ' ')
 		{
-			//s1 = &pchUnsafeCmdLine[9];
 			const char* address_str = &pchUnsafeCmdLine[9];
 
 			netadr_t address;
 			if (NET_StringToAdr(address_str, &address)) 
 			{
 				Q_snprintf(szSanitizedConnect, sizeof(szSanitizedConnect), "\nconnect %s\n", NET_AdrToString(address));
-                Cbuf_AddText(szSanitizedConnect);
-                Cbuf_AddText("\ncl_skipvid 1\n");
-            } 
-			else 
-			{
-                Con_Printf("Invalid address to connect to from unsafe command line.\n");
-            }
+				Cbuf_AddText(szSanitizedConnect);
+				Cbuf_AddText("\ncl_skipvid 1\n");
+				return;
+			} 
+
+			Con_Printf("Invalid address to connect to from unsafe location! Ignoring.\n");
+			return;
 		}
 	}
+	Con_Printf("Rejecting unsafe cmdline\n");
 }
