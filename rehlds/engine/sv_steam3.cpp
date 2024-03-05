@@ -632,7 +632,7 @@ void CSteam3Client::OnGameRichPresenceJoinRequested(GameRichPresenceJoinRequeste
 {
 	Con_Printf("OnGameRichPresenceJoinRequested\n");
 	
-	if(CSteam3Server::ClientFindFromSteamID(pCallback->m_steamIDFriend))
+	if(ClientFindFromSteamID(pCallback->m_steamIDFriend))
 	{
 		UnsafeCmdLineProcessor(pCallback->m_rgchConnect, k_cchMaxRichPresenceValueLength);
 	}
