@@ -1219,6 +1219,7 @@ void UnsafeCmdLineProcessor(const char *pchUnsafeCmdLine, int cubSize)
 		if (cubSize > count && pchUnsafeCmdLine[9] != ' ')
 		{
 			//s1 = &pchUnsafeCmdLine[9];
+			const char* address_str = &pchUnsafeCmdLine[9];
 
 			netadr_t address;
 			if (NET_StringToAdr(address_str, &address)) 
