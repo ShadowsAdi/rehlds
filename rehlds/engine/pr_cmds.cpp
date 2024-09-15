@@ -2013,10 +2013,11 @@ edict_t *EXT_FUNC CreateFakeClient_internal(const char *netname)
 	fakeclient->fakeclient = TRUE;
 	fakeclient->userid = g_userid++;
 	fakeclient->uploading = FALSE;
+	fakeclient->netchan.remote_address.type = NA_LOOPBACK;
 	fakeclient->edict = ent;
 	ent->v.netname = (size_t)fakeclient->name - (size_t)pr_strings;
 	ent->v.pContainingEntity = ent;
-	ent->v.flags = FL_FAKECLIENT | FL_CLIENT;
+	ent->v.flags = FL_CLIENT;
 
 	Info_SetValueForKey(fakeclient->userinfo, "name", netname, MAX_INFO_STRING);
 	Info_SetValueForKey(fakeclient->userinfo, "model", "gordon", MAX_INFO_STRING);
@@ -2025,8 +2026,8 @@ edict_t *EXT_FUNC CreateFakeClient_internal(const char *netname)
 	fakeclient->sendinfo = TRUE;
 	SV_ExtractFromUserinfo(fakeclient);
 
-	fakeclient->network_userid.m_SteamID = ISteamGameServer_CreateUnauthenticatedUserConnection();
-	fakeclient->network_userid.idtype = AUTH_IDTYPE_STEAM;
+	fakeclient->network_userid.m_SteamID = 0;//ISteamGameServer_CreateUnauthenticatedUserConnection();
+	fakeclient->network_userid.idtype = AUTH_IDTYPE_VALVE;
 	ISteamGameServer_BUpdateUserData(fakeclient->network_userid.m_SteamID, netname, 0);
 
 	return ent;
