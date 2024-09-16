@@ -1596,6 +1596,8 @@ void SV_SendRes_f(void)
 	msg.maxsize = sizeof(data);
 	msg.cursize = 0;
 	msg.flags = SIZEBUF_CHECK_OVERFLOW;
+	
+	Con_Printf("Called \n");
 
 	if (cmd_source != src_command && (!host_client->spawned || host_client->active))
 	{
