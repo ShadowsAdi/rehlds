@@ -1203,6 +1203,8 @@ void SV_SendResources(sizebuf_t *msg)
 	unsigned char nullbuffer[32];
 	Q_memset(nullbuffer, 0, sizeof(nullbuffer));
 
+	Con_Printf("Spawn: %d\n", g_psvs.spawncount);
+
 	MSG_WriteByte(msg, svc_resourcerequest);
 	MSG_WriteLong(msg, g_psvs.spawncount);
 	MSG_WriteLong(msg, 0);
@@ -6256,6 +6258,7 @@ int SV_SpawnServer(qboolean bIsDemo, char *server, char *startspot)
 
 	g_LastScreenUpdateTime = 0.0f;
 	g_psvs.spawncount = ++gHostSpawnCount;
+	Con_Printf("Spawn: %d\n", g_psvs.spawncount);
 
 	if (coop.value != 0.0f)
 		Cvar_SetValue("deathmatch", 0.0f);
