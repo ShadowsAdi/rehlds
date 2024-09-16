@@ -1185,7 +1185,6 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 	void *data;
 	const char *buffername = buf->buffername ? buf->buffername : "???";
 
-
 	if (length < 0)
 	{
 		Sys_Error("%s: %i negative length on %s", __func__, length, buffername);
@@ -1239,13 +1238,18 @@ void *EXT_FUNC SZ_GetSpace(sizebuf_t *buf, int length)
 #endif // REHLDS_FIXES
 
 		Con_Printf("%s: overflow on %s\n", __func__, buffername);
-
+		Log_Printf("%s, ovewflow on %s\n", __func__, buffername);
+		
 		SZ_Clear(buf);
 		buf->flags |= SIZEBUF_OVERFLOWED;
 	}
 
 	data = &buf->data[buf->cursize];
 	buf->cursize = length + buf->cursize;
+	
+	unsigned char *wtf = (unsigned char *)data;
+	
+	Log_Printf("%s, ovewflow on %s | buf: %d\n", __func__, buffername, wtf);
 
 	return data;
 }
